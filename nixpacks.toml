@@ -9,7 +9,6 @@ cmds = [
 
 [variables]
 PYTHONUNBUFFERED = "1"
-PLAYWRIGHT_BROWSERS_PATH = "/opt/playwright"
 
 [start]
-cmd = "python main.py"
+cmd = "PLAYWRIGHT_BROWSERS_PATH=/opt/playwright python main.py"

@@ -4,6 +4,9 @@ import yaml
 import importlib
 import logging
 import sys
+
+# Force Playwright to look for browsers in the Railway-compatible path
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "/opt/playwright"
 from database import init_db
 from notifier import send_error
 
