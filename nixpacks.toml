@@ -4,11 +4,11 @@ nixPkgs = ["...", "playwright-driver"]
 [phases.install]
 cmds = [
     "pip install -r requirements.txt",
-    "PLAYWRIGHT_BROWSERS_PATH=/opt/playwright python -m playwright install --with-deps"
+    "PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers python -m playwright install --with-deps chromium"
 ]
 
 [variables]
 PYTHONUNBUFFERED = "1"
 
 [start]
-cmd = "PLAYWRIGHT_BROWSERS_PATH=/opt/playwright python main.py"
+cmd = "PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers python main.py"
