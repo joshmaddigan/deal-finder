@@ -42,7 +42,6 @@ def check_deals(config):
                 
                 title = title_el.get_text().strip()
                 link = "https://forums.redflagdeals.com" + title_el["href"]
-                logging.debug(f"Evaluating: {title}")
                 
                 # Unique ID from link
                 deal_id = f"rfd_{link.split('-')[-1].replace('/', '')}"
@@ -57,6 +56,8 @@ def check_deals(config):
 
                 # Logic: Match keyword OR hit vote threshold
                 matches_keyword = any(k in title.lower() for k in keywords)
+                
+                logging.info(f"Checking: {title[:50]}... | Votes: {votes} | Match: {matches_keyword}")
                 
                 if (matches_keyword or votes >= min_votes) and is_new_deal(deal_id):
                     logging.info(f"🔥 Found RFD Deal: {title} ({votes} votes)")

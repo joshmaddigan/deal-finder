@@ -20,6 +20,7 @@ def send_deal(source, title, price, link, color=0x3498db):
         }]
     }
     try:
+        logging.info(f"Sending Discord notification for: {title}")
         response = httpx.post(WEBHOOK_URL, json=payload)
         response.raise_for_status()
     except Exception as e:
