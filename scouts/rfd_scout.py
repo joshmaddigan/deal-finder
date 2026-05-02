@@ -34,14 +34,23 @@ def check_deals(config):
                 threads = soup.select("li.row")
                 logging.info(f"RFD Fallback: Found {len(threads)} rows.")
             
+            if len(threads) > 0:
+                logging.info(f"Sample Thread HTML: {str(threads[0])[:500]}")
+            
             for thread in threads:
-                title_el = thread.select_one("a.topic_title")
-                vote_el = thread.select_one("dl.post_voting")
+                # Try multiple common selectors for the title link
+                title_el = thread.select_one("a.topic_title, a.topic-title, .title a, .thread-title a, h3 a")
+                vote_el = thread.select_one("dl.post_voting, .voting, .vote-count")
                 
-                if not title_el: continue
+                if not title_el:
+                    logging.warning("Skipping thread: No title link found.")
+                    continue
                 
                 title = title_el.get_text().strip()
-                link = "https://forums.redflagdeals.com" + title_el["href"]
+                href = title_el.get("href", "")
+                if not href: continue
+                
+                link = "https://forums.redflagdeals.com" + href
                 
                 # Unique ID from link
                 deal_id = f"rfd_{link.split('-')[-1].replace('/', '')}"
