@@ -16,4 +16,4 @@ rfd_min_votes: 15
 steam_min_discount: 75
 
 # System Settings
-check_interval_seconds: 300 # 5 minutes
+check_interval_seconds: 60 # 1 minute for faster testing
