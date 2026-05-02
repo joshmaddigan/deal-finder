@@ -1,0 +1,18 @@
+# Deal Sniper Configuration
+# -------------------------
+
+# RedFlagDeals Settings
+rfd_keywords: 
+  - 'pool'
+  - 'chlorine'
+  - 'lego'
+  - 'star wars'
+  - 'rtx'
+  - 'laptop'
+rfd_min_votes: 15
+
+# Steam Settings
+steam_min_discount: 75
+
+# System Settings
+check_interval_seconds: 300 # 5 minutes
