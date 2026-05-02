@@ -25,7 +25,6 @@ def check_deals(config):
 
             soup = BeautifulSoup(response.text, "html.parser")
             threads = soup.select("li.topic")
-            logging.info(f"RFD Found {len(threads)} threads.")
 
             for thread in threads:
                 # Title is in h3.thread_title
