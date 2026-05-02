@@ -42,6 +42,7 @@ def check_deals(config):
                 
                 title = title_el.get_text().strip()
                 link = "https://forums.redflagdeals.com" + title_el["href"]
+                logging.debug(f"Evaluating: {title}")
                 
                 # Unique ID from link
                 deal_id = f"rfd_{link.split('-')[-1].replace('/', '')}"

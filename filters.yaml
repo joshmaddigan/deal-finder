@@ -9,6 +9,7 @@ rfd_keywords:
   - 'star wars'
   - 'rtx'
   - 'laptop'
+  - 'deal' # Temporary test keyword
 rfd_min_votes: 15
 
 # Steam Settings
