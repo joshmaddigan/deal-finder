@@ -1,3 +1,4 @@
 httpx
 PyYAML
 beautifulsoup4
+lxml
