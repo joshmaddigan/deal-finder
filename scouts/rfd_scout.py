@@ -39,8 +39,8 @@ def check_deals(config):
             
             for thread in threads:
                 # Try multiple common selectors for the title link
-                title_el = thread.select_one("a.topic_title, a.topic-title, .title a, .thread-title a, h3 a")
-                vote_el = thread.select_one("dl.post_voting, .voting, .vote-count")
+                title_el = thread.select_one("a.topic_title, a.topic-title, a.thread-title-link, a.thread_title_link, .title a, .thread-title a, h3 a, a[class*='title']")
+                vote_el = thread.select_one("dl.post_voting, .voting, .vote-count, .post_voting")
                 
                 if not title_el:
                     logging.warning("Skipping thread: No title link found.")
