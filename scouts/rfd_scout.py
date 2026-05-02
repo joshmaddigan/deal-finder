@@ -12,7 +12,7 @@ def check_deals(config):
     logging.info("Scraping RedFlagDeals...")
     
     with sync_playwright() as p:
-        # We use chromium for best compatibility
+        # Explicitly use chromium to avoid headless shell issues on some environments
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         
