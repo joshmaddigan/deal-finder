@@ -13,16 +13,26 @@ def check_deals(config):
     logging.info("Scraping RedFlagDeals via BeautifulSoup...")
     
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Referer": "https://www.redflagdeals.com/",
     }
 
     try:
         with httpx.Client(headers=headers, follow_redirects=True) as client:
             response = client.get(RFD_URL, timeout=30)
+            logging.info(f"RFD Response Code: {response.status_code}")
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, "html.parser")
             threads = soup.select("li.topic")
+            logging.info(f"RFD Found {len(threads)} threads.")
+            
+            if len(threads) == 0:
+                # Fallback: some pages use 'li.row'
+                threads = soup.select("li.row")
+                logging.info(f"RFD Fallback: Found {len(threads)} rows.")
             
             for thread in threads:
                 title_el = thread.select_one("a.topic_title")
