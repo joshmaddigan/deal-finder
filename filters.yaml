@@ -16,3 +16,4 @@ steam_min_discount: 75
 
 # System Settings
 check_interval_seconds: 300 # 5 minutes (standard production interval)
+target_currency: 'CAD'

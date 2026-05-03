@@ -62,7 +62,7 @@ def check_deals(config):
                     send_deal(
                         source="RedFlagDeals",
                         title=title,
-                        price=f"Votes: {votes}",
+                        price=f"Votes: {votes} (CAD)",
                         link=link,
                         color=0xFF4500
                     )
